@@ -37,6 +37,19 @@ export default class Node extends Component {
           );
       }
 
+      if(isFinish){
+        return  (
+            <div
+              id={`node-${row}-${col}`}
+              className={`node ${extraClassName}`}
+              onMouseDown={() => onMouseDown(row, col)}
+              onMouseEnter={() => onMouseEnter(row, col)}
+              onMouseUp={() => onMouseUp()}
+              onDrop={(event)=>drop(event)} onDragOver={(event)=>allowDrop(event)}>
+            <i className={"fa fa-stop-circle-o"} aria-hidden="true" draggable={"true"} onDragStart={(event)=>drag(event)}></i></div>
+          );
+      }
+
      return (
       <div
         id={`node-${row}-${col}`}

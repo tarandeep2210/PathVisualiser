@@ -10,6 +10,8 @@ const FINISH_NODE_ROW = 10;
 const FINISH_NODE_COL = 35;
 
 
+
+
 export default class PathfindingVisualizer extends Component {
 
     constructor() {
@@ -18,6 +20,7 @@ export default class PathfindingVisualizer extends Component {
           grid: [],
           mouseIsPressed: false,
         };
+        // this.baseState = this.state;
       }
 
 
@@ -25,6 +28,7 @@ export default class PathfindingVisualizer extends Component {
       componentDidMount() {
         const grid = getInitialGrid();
         this.setState({grid});
+        this.baseState = { grid , mouseIsPressed:false};
       }
 
       handleMouseDown(row, col) {
@@ -91,12 +95,27 @@ export default class PathfindingVisualizer extends Component {
       //   ev.target.appendChild(document.getElementById(data));
       }
 
+      reset(){
+        console.log('reset');
+        this.setState(intitialState);
+        const nodeArray = document.getElementsByClassName('node');
+        for (let i = 0; i < nodeArray.length; i++) {
+          const element = nodeArray[i];
+          element.className = 'node';
+        }
+        START_NODE_ROW = 10;
+        START_NODE_COL = 15;
+      }
+
       render() {
         const {grid, mouseIsPressed} = this.state;
         return (
           <>
             <button className={"btn btn-primary"} onClick={() => this.visualizeDijkstra()}>
               Visualize Dijkstra's Algorithm
+            </button>&nbsp;
+            <button className={"btn btn-secondary"} onClick={() => this.reset()}>
+              Reset
             </button>
             <div className="grid">
               {grid.map((row, rowIdx) => {
@@ -144,6 +163,7 @@ const getInitialGrid = () => {
     return grid;
   };
 
+
   const createNode = (col, row) => {
     return {
       col,
@@ -158,6 +178,10 @@ const getInitialGrid = () => {
   };
 
 
+  const intitialState = {
+    grid : getInitialGrid(),
+    mouseIsPressed : false
+  };
   const getNewGridWithWallToggled = (grid, row, col) => {
     const newGrid = grid.slice();
     const node = newGrid[row][col];
