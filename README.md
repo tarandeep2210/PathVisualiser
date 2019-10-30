@@ -1,5 +1,9 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Project Deployed At : https://tarandeep2210.github.io/PathVisualiser/
+
+Inspired from Clement : https://github.com/clementmihailescu/Pathfinding-Visualizer
+
 ## Available Scripts
 
 In the project directory, you can run:
